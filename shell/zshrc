@@ -1,15 +1,14 @@
+# Power10K stuff
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# Powerlevel 10K stuff
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export DENO_INSTALL="/Users/kori0909/.deno"
-export PATH="/opt/homebrew/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$DENO_INSTALL/bin:$PATH"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH="/opt/homebrew/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
+
 # eza ls setup
 alias ls="eza --icons=always"
 
@@ -41,9 +40,23 @@ alias nwfox="open -n /System/Volumes/Data/Applications/Firefox.app"
 alias bi="brew install"
 alias bl="brew list"
 alias c="clear"
-alias gc="gcc-14"
-alias g+="g++-14"
-alias g+c="g++-14 -o"
+alias gcc="gcc-14"
+alias g++="g++-14"
+alias g++o="g++-14 -o"
 
 # Git Alias
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias gacp="gitStgComtPush"
+
+
+
+# Functions
+gitStgComtPush() {
+  if [ -z "$1" ]; then
+    echo "Error: Commit message is required"
+    return 1
+  fi
+
+  git add .
+  git commit -m "$1"
+  git push
+}
