@@ -29,16 +29,20 @@ alias quit-moonlight="echo ctrl+shft+alt+q"
 
 #Brew Alias
 alias bi="brew install"
-alias bs="brew list"
+alias bl="brew list"
+
+# pnpm Alias
 alias pn="pnpm"
 alias pni="pnpm install"
+
+# Quick Access
 alias vi="nvim"
 alias ali="nvim ~/.zshrc"
-alias nvimconf="nvim ~/.config/nvim"
+alias nvim-config="nvim ~/.config/nvim"
 alias lvsr="live-server"
 alias nwfox="open -n /System/Volumes/Data/Applications/Firefox.app"
-alias bi="brew install"
-alias bl="brew list"
+
+# GCC/Clang
 alias c="clear"
 alias gcc="gcc-14"
 alias g++="g++-14"
@@ -47,7 +51,13 @@ alias g++o="g++-14 -o"
 # Git Alias
 alias gacp="gitStgComtPush"
 
-
+# GitHub Alias
+alias ghgc="gh gist create"
+alias ghgl="gh gist list"
+alias ghge="gh gist edit"
+alias ghgv="gh gist view"
+alias ghg-clone="gh gist clone"
+alias ghgd="gh gist delete"
 
 # Functions
 gitStgComtPush() {
