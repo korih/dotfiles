@@ -16,6 +16,10 @@ alias ls="eza --icons=always"
 eval "$(zoxide init zsh)"
 alias cd="z"
 
+# SSH 
+alias ssh-ubc="ssh kori0909@remote.students.cs.ubc.ca"
+alias ssh-homelab="ssh server@home-server.ibex-puffin.ts.net"
+
 # Python Alias
 alias venv="python3 -m venv ."
 alias zr="source ~/.zshrc"
@@ -23,7 +27,6 @@ alias s="source"
 
 # Mac Alias
 alias alttab="pkill AltTab; screen -dmS AltTab /Applications/AltTab.app/Contents/MacOS/AltTab"
-alias homeserver="ssh server@home-server.ibex-puffin.ts.net"
 alias wake-desktop="wakeonlan -i 192.168.8.174 04:7C:16:D1:B2:79"
 alias quit-moonlight="echo ctrl+shft+alt+q"
 
@@ -37,7 +40,7 @@ alias pni="pnpm install"
 
 # Quick Access
 alias vi="nvim"
-alias ali="nvim ~/.zshrc"
+alias ali="nvim ~/.config/shell/zshrc"
 alias nvim-config="nvim ~/.config/nvim"
 alias lvsr="live-server"
 alias nwfox="open -n /System/Volumes/Data/Applications/Firefox.app"

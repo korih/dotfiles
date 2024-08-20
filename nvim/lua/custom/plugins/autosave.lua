@@ -10,7 +10,7 @@ return {
       -- refer to the configuration section below
       write_all_buffers = true,
       on_off_commands = true,
-      debounce_delay = 500,
+      debounce_delay = 3000,
     }
   end,
 }

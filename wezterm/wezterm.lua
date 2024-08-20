@@ -2,9 +2,15 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+config = {
+	automatically_reload_config = true,
+	enable_tab_bar = false,
+	window_decorations = "RESIZE",
+}
+
 config.colors = {
 	foreground = "#CBE0F0",
-  background = "#000000",
+	background = "#000000",
 	cursor_bg = "#47FF9C",
 	cursor_border = "#47FF9C",
 	cursor_fg = "#011423",
