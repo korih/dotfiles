@@ -72,9 +72,6 @@ alias gcc="gcc-14"
 alias g++="g++-14"
 alias g++o="g++-14 -o"
 
-# Git Alias
-alias gacp="gitStgComtPush"
-
 # GitHub Alias
 alias ghgc="gh gist create"
 alias ghgl="gh gist list"
@@ -87,7 +84,7 @@ alias ghgd="gh gist delete"
 alias k="kubectl"
 
 # Functions
-gitStgComtPush() {
+GitLazyPush() {
   if [ -z "$1" ]; then
     echo "Error: Commit message is required"
     return 1
