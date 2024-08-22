@@ -1,3 +1,14 @@
+# Homebrew
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # Power10K stuff
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -6,8 +17,12 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export PATH="/opt/homebrew/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
+
+
+bindkey '^ ' autosuggest-accept
 
 # eza ls setup
 alias ls="eza --icons=always"
@@ -16,9 +31,14 @@ alias ls="eza --icons=always"
 eval "$(zoxide init zsh)"
 alias cd="z"
 
+# Jankey Borders
+alias jankey="brew services start borders"
+
 # SSH 
 alias ssh-ubc="ssh kori0909@remote.students.cs.ubc.ca"
-alias ssh-homelab="ssh server@home-server.ibex-puffin.ts.net"
+alias ssh-server1="ssh server@server1.ibex-puffin.ts.net"
+alias ssh-server2="ssh server@server2.ibex-puffin.ts.net"
+alias ssh-azure0="ssh azureuser@20.151.59.61"
 
 # Python Alias
 alias venv="python3 -m venv ."
@@ -44,6 +64,7 @@ alias ali="nvim ~/.config/shell/zshrc"
 alias nvim-config="nvim ~/.config/nvim"
 alias lvsr="live-server"
 alias nwfox="open -n /System/Volumes/Data/Applications/Firefox.app"
+alias aerospace-config="nvim ~/.config/aerospace/aerospace.toml"
 
 # GCC/Clang
 alias c="clear"
@@ -61,6 +82,9 @@ alias ghge="gh gist edit"
 alias ghgv="gh gist view"
 alias ghg-clone="gh gist clone"
 alias ghgd="gh gist delete"
+
+# Kubernetes
+alias k="kubectl"
 
 # Functions
 gitStgComtPush() {
