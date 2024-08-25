@@ -1,4 +1,3 @@
-# Homebrew
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -36,8 +35,8 @@ alias jankey="brew services start borders"
 
 # SSH 
 alias ssh-ubc="ssh kori0909@remote.students.cs.ubc.ca"
-alias ssh-server1="ssh server@server1.ibex-puffin.ts.net"
-alias ssh-server2="ssh server@server2.ibex-puffin.ts.net"
+alias ssh-server1="ssh server@100.65.10.64"
+alias ssh-server2="ssh server@100.80.160.74"
 alias ssh-azure0="ssh azureuser@20.151.59.61"
 
 # Python Alias
@@ -93,4 +92,20 @@ GitLazyPush() {
   git add .
   git commit -m "$1"
   git push
+}
+
+function tmux-local() {
+  if tmux has-session -t local 2>/dev/null; then
+    tmux attach-session -t local
+  else
+    tmux new-session -s local
+  fi
+}
+
+function tmux-ssh() {
+  if tmux has-session -t ssh 2>/dev/null; then
+    tmux attach-session -t ssh
+  else
+    tmux new-session -s ssh
+  fi
 }
