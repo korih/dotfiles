@@ -71,6 +71,13 @@ alias gcc="gcc-14"
 alias g++="g++-14"
 alias g++o="g++-14 -o"
 
+#Git Alias
+alias ga="git add"
+alias gc="git commit -m "
+alias gp="git push"
+alias gp="git pull origin main"
+alias gs="git status"
+
 # GitHub Alias
 alias ghgc="gh gist create"
 alias ghgl="gh gist list"

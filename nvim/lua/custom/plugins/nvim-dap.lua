@@ -1,19 +1,16 @@
 return {
   'mfussenegger/nvim-dap',
   recommended = true,
- -- event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   desc = 'Debugging support. Requires language specific adapters to be configured. (see lang extras)',
 
   dependencies = {
     'rcarriga/nvim-dap-ui',
-    -- virtual text for the debugger
     {
       'theHamsta/nvim-dap-virtual-text',
       opts = {},
     },
   },
 
-  -- stylua: ignore
   keys = {
     { "<leader>dd", "", desc = "+debug", mode = {"n", "v"} },
     { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
@@ -35,19 +32,11 @@ return {
   },
 
   config = function()
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    -- load mason-nvim-dap here, after all adapters have been setup
-    if client and client.supports_method 'mason-nvim-dap.nvim' then
-      require('mason-nvim-dap').setup(client.opts 'mason-nvim-dap.nvim')
-    end
 
     vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = 'Visual' })
 
-    -- setup dap config by VsCode launch.json file
     local vscode = require 'dap.ext.vscode'
-    local json = require 'plenary.json'
 
-    -- Extends dap.configurations with entries read from .vscode/launch.json
     if vim.fn.filereadable '.vscode/launch.json' then
       vscode.load_launchjs()
     end

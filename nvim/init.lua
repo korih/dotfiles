@@ -81,15 +81,33 @@ vim.opt.scrolloff = 10
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>yy', '"+yy')
 vim.keymap.set('v', '<leader>p', '"+p')
 vim.keymap.set('n', '<leader>p', '"+p')
 
+
+-- Remap Ctrl-C to ESC
+vim.api.nvim_set_keymap('n', '<C-c>', '<Esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-c>', '<Esc>', { noremap = true, silent = true })
+
+-- Remap ESC to Ctrl-C
+vim.api.nvim_set_keymap('n', '<Esc>', '<C-c>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Esc>', '<C-c>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<Esc>', '<C-c>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-c>', '<cmd>nohlsearch<CR>')
+
+-- Java
+vim.api.nvim_set_keymap('n', '<leader>jta', ':JavaTestRunCurrentClass<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jto', ':JavaTestRunCurrentMethod<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jtv', ':JavaTestViewLastReport<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jtd', ':JavaTestDebugCurrentMethod<CR>', { noremap = true, silent = true })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>dd', "<cmd> lua vim.diagnostic.open_float() <CR>", { noremap = true, silent = true})
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -178,6 +196,34 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
+  },
+
+  -- Java lsp plugin
+  { 'nvim-java/nvim-java' },
+
+  -- Treesitter context
+  { 'nvim-treesitter/nvim-treesitter-context'},
+
+  -- Rust setup
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+
+  -- dap ui
+  { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
+
+  -- Surround nvim plugin
+  {
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -350,6 +396,7 @@ require('lazy').setup({
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -548,6 +595,10 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+      -- java lsp setup
+      require('java').setup()
+      require('lspconfig').jdtls.setup {}
 
       require('mason-lspconfig').setup {
         handlers = {
@@ -779,7 +830,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query' },
+      ensure_installed = { 'bash', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'java', 'javascript', 'typescript' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
