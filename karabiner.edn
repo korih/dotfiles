@@ -1,6 +1,5 @@
-{:devices {:keychron-k1 [{:vendor_id 1452 :product_id 591}]
-           :macbook [{:vendor_id 1452 :product_id 632},
-                     {:vendor_id 1452 :product_id 638}]}
+{:devices {:macbook [{:vendor_id 1452 :product_id 834},
+                     {:vendor_id 1452 :product_id 834}]}
  
  :applications {:slack ["com.tinyspeck.slackmacgap"]
                 :vscode ["com.microsoft.VSCode"]
@@ -10,62 +9,16 @@
                 :firefox ["org.mozilla.firefox"]
                 :chrome ["com.google.Chrome"]
                 :mail ["com.apple.mail"]}
- :templates {}
- 
- :layers {:tab-mode {:key :tab}}
- 
- :simlayers {:space-mode {:key :spacebar}}
- :simlayer-threshold 250
- 
- :main [{:des "Tab mode arrow keys"
-         :rules [:tab-mode
-                 [:##i :up_arrow]
-                 [:##j :left_arrow]
-                 [:##k :down_arrow]
-                 [:##l :right_arrow]
-                 [:##o :delete_or_backspace]]}
- 
-        {:des "Tab mode app shortcuts"
-         :rules [:tab-mode
-                 [:1 "open /Applications/Firefox.app"]
-                 [:2 "open /Applications/Notion.app"]
-                 [:3 "open /Applications/Slack.app"]
-                 [:4 "open /Applications/iTerm.app"]
-                 [:5 "open /Applications/Visual\\ Studio\\ Code.app"]
-                 [:6 "open /System/Library/CoreServices/Finder.app"]]}
- 
-        {:des "Caps lock as app-specific goto key"
-         :rules [[:caps_lock :!Ck :slack]
-                 [:caps_lock :!CSp :vscode]
-                 [:caps_lock :!Cp :notion]
-                 [:caps_lock :!Cl :spotify]
-                 [:caps_lock :!CSa :intellij]
-                 [:caps_lock :!Ct :firefox]
-                 [:caps_lock :!CTa :mail]]}
- 
-        {:des "Navigation keys as macropad"
-         :rules [[:insert :!Cd :chrome] ;; Google Meet toggle microphone
-                 [:delete_forward :!Ce :chrome] ;; Google Meet toggle camera
-                 [:insert :f16] ;; Zoom toggle microphone (global hotkey)
-                 [:delete_forward :f17] ;; Zoom toggle camera (global hotkey)
-                 [:home :!CSv] ;; Clipy clipboard history
-                 [:end :!CSb] ;; Clipy snippet list
-                 [[:page_up :page_down] :!Cw :firefox] ;; Close tab in Firefox
-                 [:page_up :!Tpage_up :firefox] ;; Previous tab in Firefox
-                 [:page_down :!Tpage_down :firefox] ;; Next tab in Firefox
-                 [:page_up :!TStab :vscode] ;; Previous tab in VSCode
-                 [:page_down :!Ttab :vscode] ;; Next tab in VSCode
-                 [:!Fspacebar "osascript -e 'tell app \"System Events\" to sleep'" :keychron-k1]]} ; Siri button on Keychron produces Fn + Space 
- 
-        {:des "left_command alone -> ⌘ + tab to last app"
-         :rules [[:left_command :left_command nil {:alone :!Ctab}]]}
- 
-        {:des "Quit application by command + Q only when pressing twice"
-         :rules [[:!Cq
-                  [:!Cq ["command-q" 0]]
-                  ["command-q" 1]]
-                 [:!Cq
-                  ["command-q" 1]
-                  nil
-                  {:delayed {:invoked ["command-q" 0] :canceled ["command-q" 0]}}]]}
-        ]}
+
+ :simlayers {
+             :num-mode {:key :right_command}
+             }
+
+ :main {
+        {:des "num-mode"
+         :rules [:num-mode
+                 [:q :1]
+                 ]
+         }
+        }
+ }

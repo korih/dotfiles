@@ -599,6 +599,7 @@ require('lazy').setup({
       -- java lsp setup
       require('java').setup()
       require('lspconfig').jdtls.setup {}
+      require('lspconfig').racket_langserver.setup{}
 
       require('mason-lspconfig').setup {
         handlers = {

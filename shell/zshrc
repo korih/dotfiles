@@ -75,7 +75,7 @@ alias g++o="g++-14 -o"
 alias ga="git add"
 alias gc="git commit -m "
 alias gp="git push"
-alias gp="git pull origin main"
+alias gpll="git pull origin main"
 alias gs="git status"
 
 # GitHub Alias
