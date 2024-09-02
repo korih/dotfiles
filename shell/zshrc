@@ -89,8 +89,11 @@ alias ghgd="gh gist delete"
 # Kubernetes
 alias k="kubectl"
 
+alias testtest="source ~/.config/scripts/tmux-sessioner.sh"
+
+alias tmux="tmux -2"
 # Functions
-GitLazyPush() {
+GitPush() {
   if [ -z "$1" ]; then
     echo "Error: Commit message is required"
     return 1
