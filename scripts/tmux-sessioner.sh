@@ -1,15 +1,8 @@
 #!/bin/bash
 
 # From the https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
-
 if [[ $# -eq 1 ]]; then
-    selected=$1
-else
-    selected=$(find ~/Programming/School/agrobot/ ~/Programming/Projects/ -mindepth 1 -maxdepth 1 -type d | fzf)
-fi
-
-if [[ -z $selected ]]; then
-    exit 0
+    selected=$(find ~/.config/ ~/Programming/School/agrobot/ ~/Programming/School/ ~/Programming/Projects/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 selected_name=$(basename "$selected" | tr . _)

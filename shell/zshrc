@@ -90,9 +90,10 @@ alias ghgd="gh gist delete"
 # Kubernetes
 alias k="kubectl"
 
-alias testtest="source ~/.config/scripts/tmux-sessioner.sh"
-
+# Tmux
+alias tma="source ~/.config/scripts/tmux-sessioner.sh"
 alias tmux="tmux -2"
+
 # Functions
 GitPush() {
   if [ -z "$1" ]; then
