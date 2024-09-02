@@ -3,7 +3,6 @@
 # From the https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 if [[ $# -eq 1 ]]; then
     selected=$(find ~/.config/ ~/Programming/School/agrobot/ ~/Programming/School/ ~/Programming/Projects/ -mindepth 1 -maxdepth 1 -type d | fzf)
-fi
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
@@ -18,3 +17,7 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
 fi
 
 tmux switch-client -t $selected_name
+else
+    echo "need name for session"
+fi
+
