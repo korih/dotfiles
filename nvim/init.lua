@@ -600,9 +600,7 @@ require('lazy').setup({
       require('java').setup()
       require('lspconfig').jdtls.setup {}
       require('lspconfig').racket_langserver.setup{}
-      require('treesitter-context').setup {
-        max_lines = 5,
-      }
+      require('treesitter-context').setup {}
 
       require('mason-lspconfig').setup {
         handlers = {
