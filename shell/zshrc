@@ -89,6 +89,7 @@ alias ghge="gh gist edit"
 alias ghgv="gh gist view"
 alias ghg-clone="gh gist clone"
 alias ghgd="gh gist delete"
+alias op="cdls"
 
 # Kubernetes
 alias k="kubectl"
@@ -123,4 +124,8 @@ function tmux-ssh() {
   else
     tmux new-session -s ssh
   fi
+} 
+
+function cdls() {
+    cd "$1" && ls
 }
